@@ -21,9 +21,3 @@ This task list is based on the modules and subsystems identified in the Design D
 10. **Document** the system, data sources, design decisions, and testing results in the final report. *(Assigned: Yale Miller)*
 
 ---
-
-**Notes**
-- This is a group assignment; include names of all team members on the submission PDF.
-- Add this file as `Tasklist.md` to your project repository.
-- The PDF version (`Assignment5_Tasklist.pdf`) accompanies the markdown for submission.
-
