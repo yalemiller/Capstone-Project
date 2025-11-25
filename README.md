@@ -1,5 +1,5 @@
 ## Table of Contents
-1. [Project Abstract](abstracts/project-abstract.md)
+1. [Project Abstract](abstracts/abstract.md)
 2. [Project Description](project-description/project-description.md)
 3. [User Stories](user-stories-design/user-stories.md)
 4. [Design Diagrams](user-stories-design/diagram-explanations.md)
