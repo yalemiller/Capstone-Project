@@ -1,7 +1,7 @@
 ## Table of Contents
 1. [Project Abstract](abstract/abstract.md)
 2. [Project Description](project-description/project-description.md)
-3. [User Stories and Design Diagrams](user-stories-design-diagrams/user-stories-and-design-diagrams.md)
+3. [User Stories and Design Diagrams](user-stories-and-design-diagrams/user-stories-and-design-diagrams.md)
 4. [Project Tasks and Timeline](project-tasks-and-timeline/)
     - [Effort Matrix](project-tasks-and-timeline/effort-matrix.md)
     - [Task List](project-tasks-and-timeline/task-list.md)
