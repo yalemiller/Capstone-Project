@@ -6,7 +6,7 @@
     - [Effort Matrix](project-tasks-and-timeline/effort-matrix.md)
     - [Task List](project-tasks-and-timeline/task-list.md)
     - [Timeline](project-tasks-and-timeline/timeline.md)
-9. [ABET Concerns Essay](abet-conerns-essay/abet-concerns-essay.md)
+9. [ABET Concerns Essay](abet-concerns-essay/abet-concerns-essay.md)
 10. [Slideshow](slideshow/slideshow.pdf)
 11. [Assessment Essays](assessment-essays)
     - [Capstone Assessment](assessment-essays/capstone-assessment.md)
