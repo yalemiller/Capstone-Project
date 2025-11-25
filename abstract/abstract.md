@@ -1,5 +1,5 @@
 ## Project Advisor  
-**Badri Vellambi**
+**Professor Badri Vellambi**
 
 ## Team  
 **Yale Miller**
