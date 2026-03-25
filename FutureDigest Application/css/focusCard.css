@@ -1,0 +1,309 @@
+/* ===========================
+   Focus Card
+   =========================== */
+
+.focusCard{
+  width: min(100vw, 1320px);
+  max-width: 100%;
+  min-height: 760px;
+  height: auto;
+  border-radius: 44px;
+  background: var(--foodColor, #5CC0E6);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.18);
+  padding: 42px 48px 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.focusCard.isVisible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   Header
+   =========================== */
+
+.focusHeader{
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.focusHeaderRow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.focusTitle{
+  margin: 0;
+  font-size: clamp(56px, 6vw, 96px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 0.95;
+  letter-spacing: -1px;
+}
+
+.focusCategoryIcons{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+
+.focusCategoryIcon{
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===========================
+   Divider
+   =========================== */
+
+.focusDivider{
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   Body Layout
+   =========================== */
+
+.focusBody{
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+  column-gap: 44px;
+  align-items: start;
+  width: 100%;
+}
+
+.focusCol{
+  min-width: 0;
+}
+
+.focusColLeft{
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.focusColRight{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+/* ===========================
+   Left Column
+   =========================== */
+
+.focusLabel{
+  font-size: clamp(24px, 2vw, 34px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.focusRiskBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.focusRiskValue{
+  font-size: clamp(60px, 30vw, 120px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: var(--foodColorDark, rgba(0,0,0,0.32));
+
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.focusThreatBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.focusThreatList{
+  margin: 0;
+  padding-left: 1.1em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: clamp(20px, 2.2vw, 36px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: #ffffff;
+  text-align: left;
+}
+
+.focusThreatList li::marker{
+  font-weight: 700;
+}
+
+/* ===========================
+   Price Chart
+   =========================== */
+
+.focusChartCard{
+  width: 100%;
+  max-width: 360px;
+  min-height: 520px;
+  background: #efefef;
+  border-radius: 34px;
+  padding: 24px 22px 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+
+  overflow: hidden;
+}
+
+.focusChartTitle{
+  font-size: clamp(20px, 2vw, 34px);
+  line-height: 1.02;
+  font-weight: 900;
+  color: var(--foodColor);
+  letter-spacing: -0.03em;
+
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.focusChartPlot{
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.focusChartBaseline{
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 36px;
+  border-top: 4px dashed rgba(255,255,255,0.72);
+  pointer-events: none;
+}
+
+.focusChartBarGroup{
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.focusChartBarWrap{
+  width: 100%;
+  height: calc(100% - 36px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.focusChartBar{
+  width: min(100%, 88px);
+  min-height: 24px;
+  background: var(--foodColor);
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  transition: height 400ms ease;
+}
+
+.focusChartBarValue{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: #fff;
+  font-size: clamp(12px, 1.2vw, 20px);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.focusChartXAxisLabel{
+  font-size: clamp(14px, 1.4vw, 24px);
+  line-height: 1;
+  font-weight: 900;
+  color: var(--foodColor);
+  letter-spacing: -0.03em;
+  text-align: center;
+
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.focusChartEmpty{
+  color: #666;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 1100px){
+  .focusBody{
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+  }
+
+  .focusColRight{
+    justify-content: stretch;
+  }
+
+  .focusChartCard{
+    max-width: none;
+    min-height: 520px;
+  }
+}
