@@ -1,6 +1,6 @@
 ## Table of Contents
 
-[Project Code](FutureDigest_application)
+[Project Code](/FutureDigest_Application)
 
 1. [Project Abstract](abstract/abstract.md)
 2. [Project Description](project-description/project-description.md)
