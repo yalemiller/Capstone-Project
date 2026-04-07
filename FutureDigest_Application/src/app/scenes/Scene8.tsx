@@ -369,7 +369,7 @@ export function Scene8({ currentScene = 7, totalScenes = 9, enteredFoods = [] }:
   }, [foods.length]);
 
   return (
-    <div className="w-full h-screen relative overflow-visible bg-[#2ea3bd]" data-name="Scene 8">
+    <div className="w-full h-full relative overflow-visible bg-[#2ea3bd]" data-name="Scene 8">
       <PersonSlice79
         slice="middle"
         foods={foods.map((food) => food.name)}

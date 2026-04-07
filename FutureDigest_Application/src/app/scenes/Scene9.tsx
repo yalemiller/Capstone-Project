@@ -3,7 +3,7 @@ import { PersonSlice79 } from '../components/PersonSlice79';
 
 export function Scene9({ currentScene = 8, totalScenes = 9 }) {
   return (
-    <div className="bg-white relative size-full overflow-visible" data-name="Scene 9">
+    <div className="bg-white relative size-full overflow-hidden" data-name="Scene 9">
       <div className="absolute inset-0 bg-[#2ea3bd]" />
 
       <PersonSlice79 slice="bottom" zIndex={3} />

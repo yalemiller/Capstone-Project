@@ -40,7 +40,7 @@ export function ScrollContainer({ children, containerRef, isScrollLocked = false
   return (
     <div
       ref={containerRef}
-      className="h-screen w-screen overflow-y-scroll snap-y snap-mandatory"
+      className="h-[100dvh] w-screen overflow-y-scroll snap-y snap-mandatory"
       style={{ 
         scrollbarWidth: 'none', 
         msOverflowStyle: 'none'

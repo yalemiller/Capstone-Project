@@ -30,7 +30,7 @@ export function useScrollSnap({ totalScenes, onSceneChange }) {
       if (isScrollingRef.current) return;
 
       const scrollPosition = container.scrollTop;
-      const sceneHeight = window.innerHeight;
+      const sceneHeight = container.clientHeight;
       const newScene = Math.round(scrollPosition / sceneHeight);
 
       if (newScene !== currentScene && newScene >= 0 && newScene < totalScenes) {
@@ -69,7 +69,7 @@ export function useScrollSnap({ totalScenes, onSceneChange }) {
     if (!container) return;
 
     isScrollingRef.current = true;
-    const targetScroll = sceneIndex * window.innerHeight;
+    const targetScroll = sceneIndex * container.clientHeight;
 
     container.scrollTo({
       top: targetScroll,

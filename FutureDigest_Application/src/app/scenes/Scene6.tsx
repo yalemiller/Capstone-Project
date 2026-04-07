@@ -100,14 +100,14 @@ export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }
       
       {/* Bottom turquoise bar */}
       <div 
-        className="absolute bg-[#2ea3bd]"
-        style={{
-          left: '-5.5vw',
-          top: '84.7vh',
-          width: '110vw',
-          height: '13.3vh',
-        }}
-      />
+  className="absolute bg-[#2ea3bd]"
+  style={{
+    left: '-5.5vw',
+    top: '84.7vh',
+    width: '110vw',
+    bottom: 0,
+  }}
+/>
 
       {/* Scene progress indicator */}
       <SceneProgressIndicator 
