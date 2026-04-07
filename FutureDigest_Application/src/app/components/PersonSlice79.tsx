@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
+import personIllustration from '../../assets/30a91495dceb6d7fc18038e42fb8026c7916a513.png';
 
 type SliceMode = 'top' | 'middle' | 'bottom';
 
@@ -13,7 +14,6 @@ interface PersonSlice79Props {
 const PERSON2_CONFIG = {
   widthVw: 44,
   leftVw: 2,
-  topVh: -15.05,
   offsetUpPx: -150,
 };
 
@@ -22,13 +22,45 @@ const BELLY_ANCHOR = {
   yPct: 0.43,
 };
 
-const SLICE_OFFSET_VH: Record<SliceMode, number> = {
+const SLICE_INDEX: Record<SliceMode, number> = {
   top: 0,
-  middle: -100.5,
-  bottom: -200.5,
+  middle: 1,
+  bottom: 2,
 };
 
-const PERSON_IMAGE_SRC = '/src/assets/30a91495dceb6d7fc18038e42fb8026c7916a513.png';
+const PERSON_IMAGE_SRC = personIllustration;
+
+/**
+ * Responsive top positioning based on screen size + aspect ratio
+ */
+function useResponsiveTopVh() {
+  const [topVh, setTopVh] = useState(-15.05); // desktop default (your MacBook)
+
+  useEffect(() => {
+    function update() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const aspect = h / w;
+
+      let value = -15.05;
+
+      if (w < 480) value = -8.8;            // small phones
+      else if (w < 768) value = -9.8;       // phones
+      else if (w < 1024) value = -11.8;     // tablets
+      else if (w < 1280) value = -13.4;     // small laptops
+      else if (aspect > 0.8) value = -14.2; // taller desktops
+      else value = -15.05;                  // wide desktop (MacBook sweet spot)
+
+      setTopVh(value);
+    }
+
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  return topVh;
+}
 
 export function PersonSlice79({
   slice,
@@ -36,8 +68,8 @@ export function PersonSlice79({
   currentFoodIndex = -1,
   zIndex = 4,
 }: PersonSlice79Props) {
-  const imageTranslateY = useMemo(() => `${SLICE_OFFSET_VH[slice]}vh`, [slice]);
   const showFoods = slice === 'middle' && foods.length > 0;
+  const topVh = useResponsiveTopVh();
 
   return (
     <div
@@ -53,9 +85,9 @@ export function PersonSlice79({
         style={{
           position: 'absolute',
           left: `${PERSON2_CONFIG.leftVw}vw`,
-          top: `calc(${PERSON2_CONFIG.topVh}vh - ${PERSON2_CONFIG.offsetUpPx}px)`,
+          top: `calc(${topVh}vh + ${PERSON2_CONFIG.offsetUpPx}px)`,
           width: `${PERSON2_CONFIG.widthVw}vw`,
-          height: '100vh',
+          height: '100%',
           overflow: 'hidden',
         }}
       >
@@ -63,11 +95,11 @@ export function PersonSlice79({
           src={PERSON_IMAGE_SRC}
           alt="Person illustration"
           style={{
+            height: '300%',
             width: 'auto',
-            height: '300vh',
             maxWidth: 'none',
             display: 'block',
-            transform: `translateY(${imageTranslateY})`,
+            transform: `translateY(calc(-${SLICE_INDEX[slice] * 33.333333}% - ${SLICE_INDEX[slice]}px))`,
             willChange: 'transform',
           }}
         />
@@ -87,7 +119,8 @@ export function PersonSlice79({
             }}
           >
             {foods.slice(0, 4).map((food, index) => {
-              const isActive = currentFoodIndex === -1 ? true : index === currentFoodIndex;
+              const isActive =
+                currentFoodIndex === -1 ? true : index === currentFoodIndex;
 
               return (
                 <motion.div
