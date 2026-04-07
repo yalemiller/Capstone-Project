@@ -14,7 +14,7 @@ interface PersonSlice79Props {
 const PERSON2_CONFIG = {
   widthVw: 44,
   leftVw: 2,
-  offsetUpPx: -150,
+  offsetUpPx: 150,
 };
 
 const BELLY_ANCHOR = {
