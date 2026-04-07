@@ -1,9 +1,0 @@
-/*
-ROLE: Intro scene styles
-WHAT IT DOES:
-- Adds only the styling unique to the intro panel/step.
-*/
-
-.panel--intro h2 {
-  letter-spacing: 0.2px;
-}

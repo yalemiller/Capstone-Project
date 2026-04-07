@@ -1,0 +1,76 @@
+{
+  "scenes": {
+    "scene1": {
+      "swipePrompt": "SWIPE DOWN TO GET STARTED"
+    },
+    "scene2": {
+      "headline": [
+        "You are what you eat...",
+        "But your food is changing"
+      ],
+      "body": "(Place Holder for text)"
+    },
+    "scene3": {
+      "helperText": "Try: eggs, toast, cereal",
+      "completionText": {
+        "line1": "You're all set!",
+        "line2": "Swipe down to continue"
+      }
+    },
+    "scene4": {
+      "emptyStateText": "No food data available",
+      "riskLevelLabels": {
+        "critical": "CRITICAL",
+        "major": "MAJOR",
+        "moderate": "MODERATE",
+        "low": "LOW"
+      },
+      "categoryLabels": {
+        "seafood": "Seafood",
+        "fruit": "Fruit",
+        "grains": "Grains",
+        "poultry": "Poultry",
+        "dairy": "Dairy",
+        "vegetable": "Vegetable",
+        "other": "Food"
+      },
+      "fallbackFood": {
+        "categories": [
+          "other"
+        ],
+        "riskLevel": "moderate",
+        "vulnerabilityScore": 50,
+        "primaryThreat": "Climate change",
+        "cost": {
+          "currentAvg": 5,
+          "predictedAvg": 10,
+          "currency": "USD",
+          "unit": "lb"
+        }
+      },
+      "priceChart": {
+        "maxScaleFloor": 50,
+        "minimumBaseline": 1,
+        "currentLabel": "Current",
+        "projectedLabel": "Projected"
+      }
+    },
+    "scene5": {
+      "headline": "Today these items cost",
+      "totalPrice": "$132.54"
+    },
+    "scene6": {
+      "headline": "In ten years, adjusted for inflation that could cost",
+      "totalPrice": "$250.54",
+      "increaseText": "125% increase"
+    },
+    "scene7": {
+      "title": "Scene 7",
+      "subtitle": "Placeholder - Coming Soon"
+    },
+    "scene8": {
+      "title": "Scene 8",
+      "subtitle": "Placeholder - Coming Soon"
+    }
+  }
+}
