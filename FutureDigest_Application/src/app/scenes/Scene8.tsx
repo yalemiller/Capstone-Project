@@ -4,20 +4,17 @@ import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
 import { PersonSlice79 } from '../components/PersonSlice79';
 import { getFoodByName } from '../utils/foodValidation';
 
-
-
 const SNAP_IDLE_DELAY_MS = 120;
 const SNAP_LOCK_MS = 280;
 const DEFAULT_FOOD_IDS = ['salmon', 'almonds', 'turkey', 'coffee'] as const;
-const DEFAULT_IMPACTS = {
-  productionPct: 60,
-  transportPct: 20,
-  processingPct: 8,
-  homeCookingPct: 7,
-  refrigerationPct: 5,
-  totalImpact: 0.005,
+const FALLBACK_MONTH_IMPACTS = {
+  production_impact: 40,
+  transport_impact: 20,
+  processing_impact: 15,
+  home_cooking_impacts: 10,
+  refridgeration_impact: 15,
 };
-
+const MONTH_KEYS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'] as const;
 const MONTHS = [
   'January',
   'February',
@@ -32,6 +29,31 @@ const MONTHS = [
   'November',
   'December',
 ];
+const SEGMENT_TEXT_THRESHOLD = 90;
+const MONTH_LABEL_WIDTH = 56;
+const MONTH_BAR_LEFT = 99;
+const MONTH_BAR_RIGHT = 34;
+const YEAR_BAR_LEFT = 37;
+const YEAR_BAR_RIGHT = 37;
+const YEAR_ESTIMATED_CHART_WIDTH = 620;
+
+const SEGMENT_STYLES = {
+  production: { label: 'Production', color: '#5cc0e6' },
+  transport: { label: 'Transport', color: '#ffd166' },
+  processing: { label: 'Processing', color: '#ef476f' },
+  cooking: { label: 'Cooking', color: '#9b7dff' },
+  refrigeration: { label: 'Refrigeration', color: '#ff7a59' },
+} as const;
+
+type SegmentKey = keyof typeof SEGMENT_STYLES;
+
+type MonthImpact = {
+  production_impact: number;
+  transport_impact: number;
+  processing_impact: number;
+  home_cooking_impacts: number;
+  refridgeration_impact: number;
+};
 
 type Scene8Food = {
   id: string;
@@ -46,14 +68,7 @@ type Scene8Food = {
     currency?: string;
     unit?: string;
   };
-  lifecycleImpacts?: {
-    productionPct: number;
-    transportPct: number;
-    processingPct: number;
-    homeCookingPct: number;
-    refrigerationPct: number;
-    totalImpact: number;
-  };
+  monthlyImpacts?: Partial<Record<(typeof MONTH_KEYS)[number], MonthImpact>>;
 };
 
 interface Scene8Props {
@@ -93,22 +108,65 @@ function getScrollMetrics(container: HTMLDivElement) {
   };
 }
 
+function getMonthImpact(food: Scene8Food, monthKey: (typeof MONTH_KEYS)[number]): MonthImpact {
+  return food.monthlyImpacts?.[monthKey] ?? FALLBACK_MONTH_IMPACTS;
+}
+
+function getImpactSegments(monthImpact: MonthImpact) {
+  return [
+    {
+      key: 'production' as const,
+      value: monthImpact.production_impact,
+      label: SEGMENT_STYLES.production.label,
+      color: SEGMENT_STYLES.production.color,
+    },
+    {
+      key: 'transport' as const,
+      value: monthImpact.transport_impact,
+      label: SEGMENT_STYLES.transport.label,
+      color: SEGMENT_STYLES.transport.color,
+    },
+    {
+      key: 'processing' as const,
+      value: monthImpact.processing_impact,
+      label: SEGMENT_STYLES.processing.label,
+      color: SEGMENT_STYLES.processing.color,
+    },
+    {
+      key: 'cooking' as const,
+      value: monthImpact.home_cooking_impacts,
+      label: SEGMENT_STYLES.cooking.label,
+      color: SEGMENT_STYLES.cooking.color,
+    },
+    {
+      key: 'refrigeration' as const,
+      value: monthImpact.refridgeration_impact,
+      label: SEGMENT_STYLES.refrigeration.label,
+      color: SEGMENT_STYLES.refrigeration.color,
+    },
+  ];
+}
+
+function ImpactTooltip({ text }: { text: string }) {
+  return (
+    <div className="pointer-events-none absolute left-1/2 top-[-42px] z-30 -translate-x-1/2 whitespace-nowrap rounded-[8px] bg-[#1f2559] px-3 py-2 text-[14px] font-extrabold text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
+      {text}
+    </div>
+  );
+}
+
 function Scene8Panel({ food }: Scene8PanelProps) {
   const [viewMode, setViewMode] = useState<'month' | 'year'>('month');
   const [currentMonth, setCurrentMonth] = useState(0);
 
-  const impacts = food.lifecycleImpacts || DEFAULT_IMPACTS;
-
-  const maxBarWidth = 760;
-  const productionWidth = (impacts.productionPct / 100) * maxBarWidth;
-  const transportWidth = (impacts.transportPct / 100) * maxBarWidth;
-  const processingWidth = (impacts.processingPct / 100) * maxBarWidth;
-  const cookingWidth = (impacts.homeCookingPct / 100) * maxBarWidth;
-  const refrigerationWidth = (impacts.refrigerationPct / 100) * maxBarWidth;
+  const activeMonthKey = MONTH_KEYS[currentMonth];
+  const activeMonthImpacts = getMonthImpact(food, activeMonthKey);
+  const activeSegments = getImpactSegments(activeMonthImpacts);
+  const activeMonthTotal = activeSegments.reduce((sum, segment) => sum + segment.value, 0);
 
   return (
     <div className="relative w-full h-full flex items-start justify-start pt-[2.2vh] pl-[0.8vw]">
-      <div className="relative bg-[#404c92] h-[82vh] rounded-[30px] w-[42vw]">
+      <div className="relative bg-[#404c92] h-[82vh] rounded-[30px] w-[42vw] overflow-hidden">
         <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[133px] leading-[normal] left-[24px] not-italic text-[#f5f5f5] text-[100px] top-[22px] w-[750px]">
           {food.name}
         </p>
@@ -120,15 +178,15 @@ function Scene8Panel({ food }: Scene8PanelProps) {
           Vulnerability: {(food.riskLevel || 'moderate').toUpperCase()}
         </p>
 
-        <div className="absolute bg-[#f5f5f5] h-[7px] left-[27px] top-[155px] w-[calc(100%-54px)]" />
+        <div className="absolute bg-[#f5f5f5] h-[7px] left-[27px] top-[155px]" style={{ width: 'calc(100% - 54px)' }} />
 
-        <div className="absolute left-[calc(100%-116px)] size-[91px] top-[35px]">
+        <div className="absolute right-[25px] size-[91px] top-[35px]">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 91 91">
             <circle cx="45.5" cy="45.5" fill="#F5F5F5" r="45.5" />
           </svg>
         </div>
 
-        <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[19px] leading-[normal] left-[calc(100%-110px)] not-italic text-[10px] text-black top-[71px] w-[74px] text-center">
+        <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[19px] leading-[normal] right-[8px] not-italic text-[10px] text-black top-[71px] w-[74px] text-center">
           {food.categories?.[0] || 'other'}
         </p>
 
@@ -159,54 +217,101 @@ function Scene8Panel({ food }: Scene8PanelProps) {
               % Emissions
             </p>
 
-            {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((month, idx) => (
+            {MONTH_KEYS.map((monthKey, idx) => (
               <p
-                key={month}
-                className="-translate-x-full absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal] left-[83px] not-italic text-[#f5f5f5] text-[25px] text-right w-[56px]"
-                style={{ top: `${294 + idx * 32}px` }}
+                key={monthKey}
+                className="-translate-x-full absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal] left-[83px] not-italic text-[#f5f5f5] text-[25px] text-right"
+                style={{ top: `${294 + idx * 32}px`, width: `${MONTH_LABEL_WIDTH}px` }}
               >
-                {month}
+                {MONTHS[idx].slice(0, 3)}
               </p>
             ))}
 
-            {Array.from({ length: 12 }).map((_, monthIdx) => {
+            {MONTH_KEYS.map((monthKey, monthIdx) => {
               const topPosition = 294 + monthIdx * 32;
-              const currentLeft = 99;
+              const monthData = getMonthImpact(food, monthKey);
+              const segments = getImpactSegments(monthData);
 
               return (
-                <div key={monthIdx}>
-                  <div className="absolute bg-[#5cc0e6] h-[27px]" style={{ left: `${currentLeft}px`, top: `${topPosition}px`, width: `${productionWidth * 0.1}px` }} />
-                  <div className="absolute bg-[#ffd166] h-[27px]" style={{ left: `${currentLeft + productionWidth * 0.1}px`, top: `${topPosition}px`, width: `${transportWidth * 0.1}px` }} />
-                  <div className="absolute bg-[#ef476f] h-[27px]" style={{ left: `${currentLeft + productionWidth * 0.1 + transportWidth * 0.1}px`, top: `${topPosition}px`, width: `${processingWidth * 0.1}px` }} />
-                  <div className="absolute bg-[#9b7dff] h-[27px]" style={{ left: `${currentLeft + productionWidth * 0.1 + transportWidth * 0.1 + processingWidth * 0.1}px`, top: `${topPosition}px`, width: `${cookingWidth * 0.1}px` }} />
-                  <div className="absolute bg-[#ff7a59] h-[27px]" style={{ left: `${currentLeft + productionWidth * 0.1 + transportWidth * 0.1 + processingWidth * 0.1 + cookingWidth * 0.1}px`, top: `${topPosition}px`, width: `${refrigerationWidth * 0.1}px` }} />
+                <div
+                  key={monthKey}
+                  className="absolute flex h-[27px] overflow-visible"
+                  style={{
+                    left: `${MONTH_BAR_LEFT}px`,
+                    right: `${MONTH_BAR_RIGHT}px`,
+                    top: `${topPosition}px`,
+                  }}
+                >
+                  {segments.map((segment) => {
+                    const tooltipText = `${segment.label}: ${segment.value}%`;
+                    const shouldShowInlineText = segment.value >= 20;
+
+                    return (
+                      <div
+                        key={`${monthKey}-${segment.key}`}
+                        className="group relative h-full shrink-0"
+                        style={{
+                          width: `${segment.value}%`,
+                          backgroundColor: segment.color,
+                        }}
+                        title={tooltipText}
+                      >
+                        <ImpactTooltip text={tooltipText} />
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
 
-            <div className="absolute bg-[#f5f5f5] h-[5px] left-[34px] top-[282px] w-[calc(100%-68px)]" />
+            <div className="absolute bg-[#f5f5f5] h-[5px] left-[34px] top-[282px]" style={{ width: 'calc(100% - 68px)' }} />
           </>
         ) : (
           <>
-            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[30px] top-[276px] w-[700px]">
-              {impacts.totalImpact.toFixed(5)} kg CO2 per unit produced
+            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[30px] top-[246px] w-[700px]">
+              {activeMonthTotal.toFixed(0)}% total impact
             </p>
 
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[50px] top-[725px] w-[616px]">
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[50px] top-[655px] w-[616px]">
               {MONTHS[currentMonth]}
             </p>
 
-            <div className="absolute bg-[#5cc0e6] h-[327px] left-[37px] top-[370px]" style={{ width: `${productionWidth}px` }} />
-            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[50px] leading-[normal] left-[54px] not-italic text-[#404c92] text-[30px] top-[381px] w-[190px]">Production</p>
-            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[50px] leading-[normal] left-[54px] not-italic text-[#404c92] text-[30px] top-[419px] w-[190px]">{impacts.productionPct}%</p>
+            <div
+              className="absolute top-[320px] h-[327px] flex overflow-visible"
+              style={{ left: `${YEAR_BAR_LEFT}px`, right: `${YEAR_BAR_RIGHT}px` }}
+            >
+              {activeSegments.map((segment) => {
+                const tooltipText = `${segment.label}: ${segment.value}%`;
+                const estimatedWidth = YEAR_ESTIMATED_CHART_WIDTH * (segment.value / 100);
+                const shouldShowInlineText = segment.value >= 20 && estimatedWidth >= SEGMENT_TEXT_THRESHOLD;
 
-            <div className="absolute bg-[#ffd166] h-[327px] top-[370px]" style={{ left: `${37 + productionWidth}px`, width: `${transportWidth}px` }} />
-            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[50px] leading-[normal] not-italic text-[#404c92] text-[30px] top-[381px] w-[190px]" style={{ left: `${54 + productionWidth}px` }}>Transport</p>
-            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[50px] leading-[normal] not-italic text-[#404c92] text-[30px] top-[419px] w-[190px]" style={{ left: `${54 + productionWidth}px` }}>{impacts.transportPct}%</p>
+                return (
+                  <div
+                    key={segment.key}
+                    className="group relative h-full shrink-0 overflow-visible"
+                    style={{
+                      width: `${segment.value}%`,
+                      backgroundColor: segment.color,
+                    }}
+                    title={tooltipText}
+                  >
+                    <ImpactTooltip text={tooltipText} />
+                    {shouldShowInlineText && (
+                      <div className="absolute left-[16px] top-[14px] right-[10px] text-[#404c92]">
+                        <p className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[1.05] text-[30px] m-0 break-words">
+                          {segment.label}
+                        </p>
+                        <p className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[1.05] text-[30px] m-0 mt-[6px]">
+                          {segment.value}%
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
 
-            <div className="absolute bg-[#ef476f] h-[327px] top-[370px]" style={{ left: `${37 + productionWidth + transportWidth}px`, width: `${processingWidth + cookingWidth + refrigerationWidth}px` }} />
-
-            <div className="absolute bg-[#d9d9d9] h-[17px] left-[37px] rounded-[2px] top-[834px] w-[calc(100%-74px)]" />
+            <div className="absolute bg-[#d9d9d9] h-[17px] left-[37px] rounded-[2px] top-[751px]" style={{ width: 'calc(100% - 74px)' }} />
             {Array.from({ length: 12 }).map((_, idx) => (
               <div key={idx} className="absolute bg-[#898989] h-[17px] w-[5px] top-[834px]" style={{ left: `${101 + idx * 67}px` }} />
             ))}
@@ -217,19 +322,22 @@ function Scene8Panel({ food }: Scene8PanelProps) {
               max="11"
               value={currentMonth}
               onChange={(e) => setCurrentMonth(parseInt(e.target.value, 10))}
-              className="absolute left-[37px] top-[807px] w-[calc(100%-74px)] h-[68px] opacity-0 cursor-pointer z-10"
+              className="absolute left-[37px] top-[707px] h-[68px] opacity-0 cursor-pointer z-10"
+              style={{ width: 'calc(100% - 74px)' }}
             />
 
             <div
-              className="absolute bg-[#97a6f8] h-[68px] rounded-[8px] top-[807px] w-[67px] pointer-events-none"
+              className="absolute bg-[#97a6f8] h-[68px] rounded-[8px] top-[725px] w-[67px] pointer-events-none"
               style={{ left: `${37 + currentMonth * 67}px` }}
             />
           </>
         )}
 
-        <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[49px] leading-[normal] left-[52px] not-italic text-[#f5f5f5] text-[34px] top-[700px] w-[780px]">
-          Primary Threat: {food.primaryThreat || 'Market volatility'}
-        </p>
+        {viewMode !== 'year' && (
+          <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[49px] leading-[normal] left-[52px] not-italic text-[#f5f5f5] text-[34px] top-[700px] w-[780px]">
+            Primary Threat: {food.primaryThreat || 'Market volatility'}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -251,22 +359,15 @@ export function Scene8({ currentScene = 7, totalScenes = 9, enteredFoods = [] }:
   const foods = useMemo<Scene8Food[]>(() => {
     const normalized = enteredFoods
       .map((name) => getFoodByName(name))
-      .filter((food): food is NonNullable<ReturnType<typeof getFoodByName>> => Boolean(food))
-      .map((food) => ({
-        ...food,
-        lifecycleImpacts: DEFAULT_IMPACTS,
-      }));
+      .filter((food): food is NonNullable<ReturnType<typeof getFoodByName>> => Boolean(food));
 
     if (normalized.length > 0) {
       return normalized;
     }
 
-    return DEFAULT_FOOD_IDS.map((name) => getFoodByName(name))
-      .filter((food): food is NonNullable<ReturnType<typeof getFoodByName>> => Boolean(food))
-      .map((food) => ({
-        ...food,
-        lifecycleImpacts: DEFAULT_IMPACTS,
-      }));
+    return DEFAULT_FOOD_IDS.map((name) => getFoodByName(name)).filter(
+      (food): food is NonNullable<ReturnType<typeof getFoodByName>> => Boolean(food),
+    );
   }, [enteredFoods]);
 
   const emitActiveIndex = (newIndex: number, totalItems: number) => {
@@ -371,10 +472,11 @@ export function Scene8({ currentScene = 7, totalScenes = 9, enteredFoods = [] }:
   return (
     <div className="w-full h-full relative overflow-visible bg-[#2ea3bd]" data-name="Scene 8">
       <PersonSlice79
-        slice="middle"
-        foods={foods.map((food) => food.name)}
-        zIndex={8}
-      />
+  slice="middle"
+  foods={foods.map((food) => food.name)}
+  currentFoodIndex={activeIndex}
+  zIndex={8}
+/>
 
       <div
         ref={scrollContainerRef}

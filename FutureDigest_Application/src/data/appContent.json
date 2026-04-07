@@ -56,11 +56,11 @@
       }
     },
     "scene5": {
-      "headline": "Today these items cost",
+      "headline": "Today picking all these item at grocery cost an average of...",
       "totalPrice": "$132.54"
     },
     "scene6": {
-      "headline": "In ten years, adjusted for inflation that could cost",
+      "headline": "In ten years, adjusted for inflation that could cost...",
       "totalPrice": "$250.54",
       "increaseText": "125% increase"
     },

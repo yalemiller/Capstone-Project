@@ -6,6 +6,7 @@ import { FixedFoodBlocks } from './components/FixedFoodBlocks';
 import { useScrollSnap } from './hooks/useScrollSnap';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { SCENE_3_STEPS } from './constants';
+import foodsData from '../data/foods.json';
 import {
   Scene1,
   Scene2,
@@ -23,7 +24,7 @@ const TOTAL_SCENES = 9;
 export default function App() {
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
   const [scene3Complete, setScene3Complete] = useState(false);
-  const [enteredFoods, setEnteredFoods] = useState([]);
+  const [enteredFoods, setEnteredFoods] = useState<string[]>([]);
   const [currentFoodIndex, setCurrentFoodIndex] = useState(0);
   const [skyGradient, setSkyGradient] = useState(SCENE_3_STEPS[0].gradient);
   const [hasFeedingStarted, setHasFeedingStarted] = useState(false);
@@ -36,23 +37,24 @@ export default function App() {
     },
   });
 
-  // Continuous scroll progress for parallax and fade effects
   const scrollProgress = useScrollProgress(containerRef);
 
-  // Lock scroll when on Scene 3 and not complete
   const isScrollLocked = currentSceneIndex === 2 && !scene3Complete;
 
   return (
     <>
-      <ScrollContainer 
-        containerRef={containerRef} 
+      <ScrollContainer
+        containerRef={containerRef}
         isScrollLocked={isScrollLocked}
         currentScene={currentSceneIndex}
       >
         <SceneWrapper sceneNumber={1}>
-          <Scene1 skyGradient={skyGradient} enableGlobalGradient={hasFeedingStarted} />
+          <Scene1
+            skyGradient={skyGradient}
+            enableGlobalGradient={hasFeedingStarted}
+          />
         </SceneWrapper>
-        
+
         <SceneWrapper sceneNumber={2}>
           <Scene2
             currentScene={currentSceneIndex}
@@ -61,10 +63,10 @@ export default function App() {
             enableGlobalGradient={hasFeedingStarted}
           />
         </SceneWrapper>
-        
+
         <SceneWrapper sceneNumber={3}>
-          <Scene3 
-            currentScene={currentSceneIndex} 
+          <Scene3
+            currentScene={currentSceneIndex}
             totalScenes={TOTAL_SCENES}
             onComplete={() => setScene3Complete(true)}
             onFoodsEntered={(foods) => {
@@ -74,60 +76,67 @@ export default function App() {
             onSkyGradientChange={setSkyGradient}
           />
         </SceneWrapper>
-        
+
         <SceneWrapper sceneNumber={4}>
-          <Scene4 
-            currentScene={currentSceneIndex} 
+          <Scene4
+            currentScene={currentSceneIndex}
             totalScenes={TOTAL_SCENES}
             enteredFoods={enteredFoods}
             onFoodIndexChange={(index) => setCurrentFoodIndex(index)}
           />
         </SceneWrapper>
-        
+
         <SceneWrapper sceneNumber={5}>
-          <Scene5 
-            currentScene={currentSceneIndex} 
+          <Scene5
+            currentScene={currentSceneIndex}
             totalScenes={TOTAL_SCENES}
             scrollProgress={scrollProgress}
+            enteredFoods={enteredFoods}
+            foods={foodsData.foods}
           />
         </SceneWrapper>
-        
+
         <SceneWrapper sceneNumber={6}>
-          <Scene6 
-            currentScene={currentSceneIndex} 
-            totalScenes={TOTAL_SCENES}
-            scrollProgress={scrollProgress}
+          <Scene6
+     currentScene={currentSceneIndex}
+  totalScenes={TOTAL_SCENES}
+  scrollProgress={scrollProgress}
+  enteredFoods={enteredFoods}
+  foods={foodsData.foods}
           />
         </SceneWrapper>
-        
+
         <SceneWrapper sceneNumber={7}>
-          <Scene7 currentScene={currentSceneIndex} totalScenes={TOTAL_SCENES} />
+          <Scene7
+            currentScene={currentSceneIndex}
+            totalScenes={TOTAL_SCENES}
+          />
         </SceneWrapper>
-        
+
         <SceneWrapper sceneNumber={8}>
-          <Scene8 
-            currentScene={currentSceneIndex} 
+          <Scene8
+            currentScene={currentSceneIndex}
             totalScenes={TOTAL_SCENES}
             enteredFoods={enteredFoods}
           />
         </SceneWrapper>
 
         <SceneWrapper sceneNumber={9}>
-          <Scene9 currentScene={currentSceneIndex} totalScenes={TOTAL_SCENES} />
+          <Scene9
+            currentScene={currentSceneIndex}
+            totalScenes={TOTAL_SCENES}
+            enteredFoods={enteredFoods}
+          />
         </SceneWrapper>
       </ScrollContainer>
 
-      {/* Parallax Person - image only, scenes 2-4 */}
       <ParallaxPerson scrollProgress={scrollProgress} />
 
-      {/* Fixed Food Blocks - ONE persistent element from scene 3 through 6 */}
-      {/* Aligns with person stomach (3-4), receipt items (5), bag opening (6) */}
-      <FixedFoodBlocks 
+      <FixedFoodBlocks
         scrollProgress={scrollProgress}
         foods={enteredFoods}
         currentFoodIndex={currentSceneIndex === 3 ? currentFoodIndex : -1}
       />
-
     </>
   );
 }

@@ -2,10 +2,15 @@ import { useMemo } from 'react';
 import imgBag1 from "../../assets/161e525cc32e6c36fdb23b7da795dc9faee62f01.png";
 import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
 import { appContent } from '../data/appContent';
+import { formatCurrency, getSelectedFoodsCostTotals } from '../utils/dataHelpers';
 
-export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }) {
-  // Text opacity - smooth fade in/out based on scroll progress
-  // Scene 6 = scrollProgress 5. Fade in from 4.5→5, fade out from 5.5→6
+export function Scene6({
+  currentScene = 5,
+  totalScenes = 8,
+  scrollProgress = 5,
+  enteredFoods = [],
+  foods = [],
+}) {
   const textOpacity = useMemo(() => {
     if (scrollProgress < 4.5) return 0;
     if (scrollProgress < 5) return (scrollProgress - 4.5) / 0.5;
@@ -20,12 +25,28 @@ export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }
     return (scrollProgress - 4.58) / 0.46;
   }, [scrollProgress]);
 
+  const projectedTotalText = useMemo(() => {
+    const { predictedTotal } = getSelectedFoodsCostTotals(enteredFoods, foods);
+    return formatCurrency(predictedTotal);
+  }, [enteredFoods, foods]);
+
+  const increaseText = useMemo(() => {
+    const { currentTotal, predictedTotal } = getSelectedFoodsCostTotals(enteredFoods, foods);
+
+    if (currentTotal > 0 && predictedTotal > 0) {
+      const increasePercentage = Math.round(
+        ((predictedTotal - currentTotal) / currentTotal) * 100
+      );
+      return `${increasePercentage}% increase`;
+    }
+
+    return appContent.scenes.scene6.increaseText;
+  }, [enteredFoods, foods]);
+
   return (
     <div className="bg-[#c7e5f1] relative size-full" data-name="Scene 6">
-      {/* Light blue background */}
       <div className="absolute bg-[#c7e5f1] inset-0" />
       
-      {/* Grocery bag image - positioned to "catch" the food blocks */}
       <div 
         className="absolute"
         style={{
@@ -33,7 +54,7 @@ export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }
           top: '20.5vh',
           width: '36vw',
           height: '65.5vh',
-          zIndex: 11, // raised above food blocks (which are zIndex 5 during vacuum)
+          zIndex: 11,
           transform: `translateY(${(1 - bagRiseProgress) * 16}vh) scale(${0.92 + bagRiseProgress * 0.08})`,
           transformOrigin: 'bottom center',
           transition: 'transform 0.12s linear',
@@ -47,7 +68,6 @@ export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }
         />
       </div>
       
-      {/* Main text - top (fades) */}
       <p 
         className="absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0f707f]"
         style={{
@@ -64,7 +84,6 @@ export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }
         {appContent.scenes.scene6.headline}
       </p>
       
-      {/* Price (fades) */}
       <p 
         className="absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0f707f]"
         style={{
@@ -78,10 +97,9 @@ export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }
           transition: 'opacity 0.15s ease',
         }}
       >
-        {appContent.scenes.scene6.totalPrice}
+        {projectedTotalText}
       </p>
       
-      {/* Increase text (fades) */}
       <p 
         className="absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0f707f]"
         style={{
@@ -95,21 +113,19 @@ export function Scene6({ currentScene = 5, totalScenes = 8, scrollProgress = 5 }
           transition: 'opacity 0.15s ease',
         }}
       >
-        {appContent.scenes.scene6.increaseText}
+        {increaseText}
       </p>
       
-      {/* Bottom turquoise bar */}
       <div 
-  className="absolute bg-[#2ea3bd]"
-  style={{
-    left: '-5.5vw',
-    top: '84.7vh',
-    width: '110vw',
-    bottom: 0,
-  }}
-/>
+        className="absolute bg-[#2ea3bd]"
+        style={{
+          left: '-5.5vw',
+          top: '84.7vh',
+          width: '110vw',
+          bottom: 0,
+        }}
+      />
 
-      {/* Scene progress indicator */}
       <SceneProgressIndicator 
         totalScenes={totalScenes} 
         currentScene={currentScene} 

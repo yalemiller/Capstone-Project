@@ -18,7 +18,7 @@ const PERSON2_CONFIG = {
 };
 
 const BELLY_ANCHOR = {
-  xPct: 0.57,
+  xPct: 0.50,
   yPct: 0.43,
 };
 
@@ -44,12 +44,12 @@ function useResponsiveTopVh() {
 
       let value = -15.05;
 
-      if (w < 480) value = -8.8;            // small phones
-      else if (w < 768) value = -9.8;       // phones
-      else if (w < 1024) value = -11.8;     // tablets
-      else if (w < 1280) value = -13.4;     // small laptops
+      if (w < 480) value = -8.8; // small phones
+      else if (w < 768) value = -9.8; // phones
+      else if (w < 1024) value = -11.8; // tablets
+      else if (w < 1280) value = -13.4; // small laptops
       else if (aspect > 0.8) value = -14.2; // taller desktops
-      else value = -15.05;                  // wide desktop (MacBook sweet spot)
+      else value = -15.05; // wide desktop (MacBook sweet spot)
 
       setTopVh(value);
     }
@@ -119,40 +119,39 @@ export function PersonSlice79({
             }}
           >
             {foods.slice(0, 4).map((food, index) => {
-              const isActive =
-                currentFoodIndex === -1 ? true : index === currentFoodIndex;
+              const isActive = currentFoodIndex === -1 ? true : index === currentFoodIndex;
 
               return (
                 <motion.div
                   key={`slice79-food-${food}-${index}`}
-                  initial={{ opacity: 0, y: 10, scale: 0.94 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.5 }}
                   animate={{
-                    opacity: isActive ? 1 : 0.56,
+                    opacity: isActive ? 1 : 0.5,
                     y: 0,
                     scale: isActive ? 1 : 0.95,
                   }}
-                  transition={{ duration: 0.24, ease: 'easeOut' }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
                   style={{
                     backgroundColor: '#47c6da',
-                    borderRadius: 'clamp(8px, 0.9vw, 16px)',
-                    minHeight: '5.8vh',
+                    borderRadius: 'clamp(8px, 1.2vw, 25px)',
+                    minHeight: '9.5vh',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 8px 18px rgba(0, 0, 0, 0.18)',
-                    padding: '0 0.7vw',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    padding: '0',
                   }}
                 >
                   <p
                     style={{
-                      fontFamily: "'Inter:Bold',sans-serif",
+                      fontFamily: "'Inter:Bold', sans-serif",
                       fontWeight: 'bold',
-                      color: '#ffffff',
-                      fontSize: 'clamp(12px, 0.95vw, 20px)',
+                      color: 'white',
+                      fontSize: 'clamp(12px, 1.8vw, 45px)',
                       textTransform: 'capitalize',
                       margin: 0,
                       lineHeight: 'normal',
-                      whiteSpace: 'nowrap',
+                      textAlign: 'center',
                     }}
                   >
                     {food.toLowerCase()}
