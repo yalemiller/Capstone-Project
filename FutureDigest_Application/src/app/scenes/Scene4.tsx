@@ -334,7 +334,7 @@ export function Scene4({ currentScene = 3, totalScenes = 8, enteredFoods = [], o
                   {food.name}
                 </p>
 
-                <div
+                {/* <div
                   className="absolute flex items-center justify-center bg-[#f5f5f5] rounded-full"
                   style={{
                     width: 'clamp(54px, 4.2vw, 84px)',
@@ -349,7 +349,7 @@ export function Scene4({ currentScene = 3, totalScenes = 8, enteredFoods = [], o
                   >
                     {getCategoryName(food.categories)}
                   </p>
-                </div>
+                </div> */}
 
                 <div
                   className="bg-[#f5f5f5] w-full"

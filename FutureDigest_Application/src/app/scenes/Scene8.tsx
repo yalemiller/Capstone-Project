@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
+import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
 import { PersonSlice79 } from '../components/PersonSlice79';
 import { getFoodByName } from '../utils/foodValidation';
 
@@ -53,6 +53,14 @@ type MonthImpact = {
   processing_impact: number;
   home_cooking_impacts: number;
   refridgeration_impact: number;
+};
+
+type ImpactSegment = {
+  key: SegmentKey;
+  value: number;
+  rawValue: number;
+  label: string;
+  color: string;
 };
 
 type Scene8Food = {
@@ -112,38 +120,98 @@ function getMonthImpact(food: Scene8Food, monthKey: (typeof MONTH_KEYS)[number])
   return food.monthlyImpacts?.[monthKey] ?? FALLBACK_MONTH_IMPACTS;
 }
 
-function getImpactSegments(monthImpact: MonthImpact) {
+function getImpactSegments(monthImpact: MonthImpact): ImpactSegment[] {
+  const total =
+    monthImpact.production_impact +
+    monthImpact.transport_impact +
+    monthImpact.processing_impact +
+    monthImpact.home_cooking_impacts +
+    monthImpact.refridgeration_impact;
+
+  if (total <= 0) {
+    return [
+      {
+        key: 'production',
+        value: 40,
+        rawValue: 0,
+        label: SEGMENT_STYLES.production.label,
+        color: SEGMENT_STYLES.production.color,
+      },
+      {
+        key: 'transport',
+        value: 20,
+        rawValue: 0,
+        label: SEGMENT_STYLES.transport.label,
+        color: SEGMENT_STYLES.transport.color,
+      },
+      {
+        key: 'processing',
+        value: 15,
+        rawValue: 0,
+        label: SEGMENT_STYLES.processing.label,
+        color: SEGMENT_STYLES.processing.color,
+      },
+      {
+        key: 'cooking',
+        value: 10,
+        rawValue: 0,
+        label: SEGMENT_STYLES.cooking.label,
+        color: SEGMENT_STYLES.cooking.color,
+      },
+      {
+        key: 'refrigeration',
+        value: 15,
+        rawValue: 0,
+        label: SEGMENT_STYLES.refrigeration.label,
+        color: SEGMENT_STYLES.refrigeration.color,
+      },
+    ];
+  }
+
+  const makeSegment = (
+    key: SegmentKey,
+    rawValue: number,
+    label: string,
+    color: string,
+  ): ImpactSegment => ({
+    key,
+    rawValue,
+    value: (rawValue / total) * 100,
+    label,
+    color,
+  });
+
   return [
-    {
-      key: 'production' as const,
-      value: monthImpact.production_impact,
-      label: SEGMENT_STYLES.production.label,
-      color: SEGMENT_STYLES.production.color,
-    },
-    {
-      key: 'transport' as const,
-      value: monthImpact.transport_impact,
-      label: SEGMENT_STYLES.transport.label,
-      color: SEGMENT_STYLES.transport.color,
-    },
-    {
-      key: 'processing' as const,
-      value: monthImpact.processing_impact,
-      label: SEGMENT_STYLES.processing.label,
-      color: SEGMENT_STYLES.processing.color,
-    },
-    {
-      key: 'cooking' as const,
-      value: monthImpact.home_cooking_impacts,
-      label: SEGMENT_STYLES.cooking.label,
-      color: SEGMENT_STYLES.cooking.color,
-    },
-    {
-      key: 'refrigeration' as const,
-      value: monthImpact.refridgeration_impact,
-      label: SEGMENT_STYLES.refrigeration.label,
-      color: SEGMENT_STYLES.refrigeration.color,
-    },
+    makeSegment(
+      'production',
+      monthImpact.production_impact,
+      SEGMENT_STYLES.production.label,
+      SEGMENT_STYLES.production.color,
+    ),
+    makeSegment(
+      'transport',
+      monthImpact.transport_impact,
+      SEGMENT_STYLES.transport.label,
+      SEGMENT_STYLES.transport.color,
+    ),
+    makeSegment(
+      'processing',
+      monthImpact.processing_impact,
+      SEGMENT_STYLES.processing.label,
+      SEGMENT_STYLES.processing.color,
+    ),
+    makeSegment(
+      'cooking',
+      monthImpact.home_cooking_impacts,
+      SEGMENT_STYLES.cooking.label,
+      SEGMENT_STYLES.cooking.color,
+    ),
+    makeSegment(
+      'refrigeration',
+      monthImpact.refridgeration_impact,
+      SEGMENT_STYLES.refrigeration.label,
+      SEGMENT_STYLES.refrigeration.color,
+    ),
   ];
 }
 
@@ -162,7 +230,7 @@ function Scene8Panel({ food }: Scene8PanelProps) {
   const activeMonthKey = MONTH_KEYS[currentMonth];
   const activeMonthImpacts = getMonthImpact(food, activeMonthKey);
   const activeSegments = getImpactSegments(activeMonthImpacts);
-  const activeMonthTotal = activeSegments.reduce((sum, segment) => sum + segment.value, 0);
+  const activeMonthTotal = activeSegments.reduce((sum, segment) => sum + segment.rawValue, 0);
 
   return (
     <div className="relative w-full h-full flex items-start justify-start pt-[2.2vh] pl-[0.8vw]">
@@ -175,12 +243,12 @@ function Scene8Panel({ food }: Scene8PanelProps) {
           className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[44px] top-[178px]"
           style={{ width: 'calc(100% - 240px)' }}
         >
-          Vulnerability: {(food.riskLevel || 'moderate').toUpperCase()}
+          Vulnerability: {(food.riskLevel || 'medium').toUpperCase()}
         </p>
 
         <div className="absolute bg-[#f5f5f5] h-[7px] left-[27px] top-[155px]" style={{ width: 'calc(100% - 54px)' }} />
 
-        <div className="absolute right-[25px] size-[91px] top-[35px]">
+        {/* <div className="absolute right-[25px] size-[91px] top-[35px]">
           <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 91 91">
             <circle cx="45.5" cy="45.5" fill="#F5F5F5" r="45.5" />
           </svg>
@@ -188,7 +256,7 @@ function Scene8Panel({ food }: Scene8PanelProps) {
 
         <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[19px] leading-[normal] right-[8px] not-italic text-[10px] text-black top-[71px] w-[74px] text-center">
           {food.categories?.[0] || 'other'}
-        </p>
+        </p> */}
 
         <div className="absolute right-[28px] top-[182px] z-20 flex flex-col items-end gap-[7px] w-[122px]">
           <p className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal] not-italic text-[24px] text-white whitespace-nowrap m-0">
@@ -243,7 +311,7 @@ function Scene8Panel({ food }: Scene8PanelProps) {
                   }}
                 >
                   {segments.map((segment) => {
-                    const tooltipText = `${segment.label}: ${segment.value}%`;
+                    const tooltipText = `${segment.label}: ${segment.value.toFixed(1)}%`;
                     const shouldShowInlineText = segment.value >= 20;
 
                     return (
@@ -257,6 +325,13 @@ function Scene8Panel({ food }: Scene8PanelProps) {
                         title={tooltipText}
                       >
                         <ImpactTooltip text={tooltipText} />
+                        {shouldShowInlineText && (
+                          <div className="absolute inset-0 flex items-center justify-center px-[6px]">
+                            <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-[12px] leading-none text-[#404c92] whitespace-nowrap">
+                              {Math.round(segment.value)}%
+                            </span>
+                          </div>
+                        )}
                       </div>
                     );
                   })}
@@ -269,7 +344,7 @@ function Scene8Panel({ food }: Scene8PanelProps) {
         ) : (
           <>
             <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[30px] top-[256px] w-[700px]">
-              {activeMonthTotal.toFixed(0)}% total impact
+              {activeMonthTotal.toFixed(0)} total impact
             </p>
 
             <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[50px] top-[625px] w-[616px]">
@@ -281,7 +356,7 @@ function Scene8Panel({ food }: Scene8PanelProps) {
               style={{ left: `${YEAR_BAR_LEFT}px`, right: `${YEAR_BAR_RIGHT}px` }}
             >
               {activeSegments.map((segment) => {
-                const tooltipText = `${segment.label}: ${segment.value}%`;
+                const tooltipText = `${segment.label}: ${segment.value.toFixed(1)}%`;
                 const estimatedWidth = YEAR_ESTIMATED_CHART_WIDTH * (segment.value / 100);
                 const shouldShowInlineText = segment.value >= 20 && estimatedWidth >= SEGMENT_TEXT_THRESHOLD;
 
@@ -302,7 +377,7 @@ function Scene8Panel({ food }: Scene8PanelProps) {
                           {segment.label}
                         </p>
                         <p className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[1.05] text-[30px] m-0 mt-[6px]">
-                          {segment.value}%
+                          {Math.round(segment.value)}%
                         </p>
                       </div>
                     )}
@@ -319,7 +394,9 @@ function Scene8Panel({ food }: Scene8PanelProps) {
             <input
               type="range"
               min="0"
-              max="11"              step="1"              value={currentMonth}
+              max="11"
+              step="1"
+              value={currentMonth}
               onChange={(e) => setCurrentMonth(parseInt(e.target.value, 10))}
               className="absolute left-[37px] top-[707px] h-[68px] opacity-0 cursor-pointer z-10"
               style={{ width: 'calc(100% - 74px)' }}

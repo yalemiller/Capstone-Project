@@ -34,7 +34,7 @@ export function formatCurrency(value, currency = 'USD') {
 export function getRiskColor(riskLevel) {
   const colors = {
     low: '#95e1d3',
-    moderate: '#ffd93d',
+    medium: '#ffd93d',
     major: '#ff6b6b',
     critical: '#f38181',
   };

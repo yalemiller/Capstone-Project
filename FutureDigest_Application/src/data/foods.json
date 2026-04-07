@@ -1,35 +1,1534 @@
 {
   "foods": [
     {
-      "id": "coffee",
-      "name": "Coffee",
-      "categories": ["grains"],
+      "id": "cereal",
+      "name": "Cereal",
+      "categories": [
+        "grains"
+      ],
+      "riskLevel": "medium",
+      "vulnerabilityScore": 60,
+      "primaryThreat": "Crop yield variability",
+      "cost": {
+        "currentAvg": 3.5,
+        "predictedAvg": 6.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 34,
+          "transport_impact": 36,
+          "processing_impact": 30,
+          "home_cooking_impacts": 0,
+          "refridgeration_impact": 0
+        },
+        "feb": {
+          "production_impact": 34,
+          "transport_impact": 36,
+          "processing_impact": 30,
+          "home_cooking_impacts": 0,
+          "refridgeration_impact": 0
+        },
+        "mar": {
+          "production_impact": 31,
+          "transport_impact": 33,
+          "processing_impact": 12,
+          "home_cooking_impacts": 9,
+          "refridgeration_impact": 15
+        },
+        "apr": {
+          "production_impact": 48,
+          "transport_impact": 15,
+          "processing_impact": 12,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "may": {
+          "production_impact": 50,
+          "transport_impact": 15,
+          "processing_impact": 10,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "jun": {
+          "production_impact": 52,
+          "transport_impact": 14,
+          "processing_impact": 9,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "jul": {
+          "production_impact": 55,
+          "transport_impact": 13,
+          "processing_impact": 7,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "aug": {
+          "production_impact": 53,
+          "transport_impact": 14,
+          "processing_impact": 8,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "sep": {
+          "production_impact": 50,
+          "transport_impact": 15,
+          "processing_impact": 10,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "oct": {
+          "production_impact": 47,
+          "transport_impact": 16,
+          "processing_impact": 12,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "nov": {
+          "production_impact": 44,
+          "transport_impact": 18,
+          "processing_impact": 13,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        },
+        "dec": {
+          "production_impact": 42,
+          "transport_impact": 20,
+          "processing_impact": 13,
+          "home_cooking_impacts": 10,
+          "refridgeration_impact": 15
+        }
+      }
+    },
+    {
+      "id": "mango",
+      "name": "Mango",
+      "categories": [
+        "fruit"
+      ],
+      "riskLevel": "major",
+      "vulnerabilityScore": 70,
+      "primaryThreat": "Heat stress",
+      "cost": {
+        "currentAvg": 1.5,
+        "predictedAvg": 3.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 34,
+          "transport_impact": 32,
+          "processing_impact": 21,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "feb": {
+          "production_impact": 35,
+          "transport_impact": 31,
+          "processing_impact": 20,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "mar": {
+          "production_impact": 38,
+          "transport_impact": 29,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "apr": {
+          "production_impact": 43,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "may": {
+          "production_impact": 48,
+          "transport_impact": 22,
+          "processing_impact": 16,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "jun": {
+          "production_impact": 52,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 7
+        },
+        "jul": {
+          "production_impact": 55,
+          "transport_impact": 17,
+          "processing_impact": 14,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 7
+        },
+        "aug": {
+          "production_impact": 52,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 7
+        },
+        "sep": {
+          "production_impact": 48,
+          "transport_impact": 22,
+          "processing_impact": 16,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "oct": {
+          "production_impact": 43,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "nov": {
+          "production_impact": 35,
+          "transport_impact": 31,
+          "processing_impact": 20,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "dec": {
+          "production_impact": 34,
+          "transport_impact": 32,
+          "processing_impact": 21,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        }
+      }
+    },
+    {
+      "id": "cheddar_cheese",
+      "name": "Cheddar Cheese",
+      "categories": [
+        "dairy"
+      ],
+      "riskLevel": "medium",
+      "vulnerabilityScore": 58,
+      "primaryThreat": "Feed cost increases",
+      "cost": {
+        "currentAvg": 5.0,
+        "predictedAvg": 8.5,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "feb": {
+          "production_impact": 42,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "mar": {
+          "production_impact": 45,
+          "transport_impact": 24,
+          "processing_impact": 17,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "apr": {
+          "production_impact": 50,
+          "transport_impact": 20,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "may": {
+          "production_impact": 47,
+          "transport_impact": 23,
+          "processing_impact": 17,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 7
+        },
+        "jun": {
+          "production_impact": 52,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 7
+        },
+        "jul": {
+          "production_impact": 54,
+          "transport_impact": 17,
+          "processing_impact": 14,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "aug": {
+          "production_impact": 52,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 7
+        },
+        "sep": {
+          "production_impact": 47,
+          "transport_impact": 23,
+          "processing_impact": 17,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 7
+        },
+        "oct": {
+          "production_impact": 42,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "nov": {
+          "production_impact": 42,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "dec": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        }
+      }
+    },
+    {
+      "id": "peanut_butter",
+      "name": "Peanut Butter",
+      "categories": [
+        "legumes"
+      ],
+      "riskLevel": "medium",
+      "vulnerabilityScore": 62,
+      "primaryThreat": "Drought",
+      "cost": {
+        "currentAvg": 2.5,
+        "predictedAvg": 5.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 38,
+          "transport_impact": 29,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "feb": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "mar": {
+          "production_impact": 42,
+          "transport_impact": 25,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "apr": {
+          "production_impact": 48,
+          "transport_impact": 22,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "may": {
+          "production_impact": 46,
+          "transport_impact": 23,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jun": {
+          "production_impact": 50,
+          "transport_impact": 19,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jul": {
+          "production_impact": 53,
+          "transport_impact": 18,
+          "processing_impact": 14,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "aug": {
+          "production_impact": 50,
+          "transport_impact": 19,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "sep": {
+          "production_impact": 46,
+          "transport_impact": 23,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "oct": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "nov": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "dec": {
+          "production_impact": 38,
+          "transport_impact": 29,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        }
+      }
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "categories": [
+        "protein"
+      ],
+      "riskLevel": "major",
+      "vulnerabilityScore": 75,
+      "primaryThreat": "Disease",
+      "cost": {
+        "currentAvg": 2.2,
+        "predictedAvg": 5.5,
+        "currency": "USD",
+        "unit": "dozen"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 39,
+          "transport_impact": 29,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "feb": {
+          "production_impact": 40,
+          "transport_impact": 28,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "mar": {
+          "production_impact": 43,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "apr": {
+          "production_impact": 48,
+          "transport_impact": 23,
+          "processing_impact": 16,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "may": {
+          "production_impact": 50,
+          "transport_impact": 21,
+          "processing_impact": 15,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "jun": {
+          "production_impact": 54,
+          "transport_impact": 18,
+          "processing_impact": 14,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "jul": {
+          "production_impact": 56,
+          "transport_impact": 16,
+          "processing_impact": 14,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "aug": {
+          "production_impact": 54,
+          "transport_impact": 18,
+          "processing_impact": 14,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "sep": {
+          "production_impact": 50,
+          "transport_impact": 21,
+          "processing_impact": 15,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "oct": {
+          "production_impact": 45,
+          "transport_impact": 25,
+          "processing_impact": 17,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "nov": {
+          "production_impact": 40,
+          "transport_impact": 28,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "dec": {
+          "production_impact": 39,
+          "transport_impact": 29,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        }
+      }
+    },
+    {
+      "id": "strawberries",
+      "name": "Strawberries",
+      "categories": [
+        "fruit"
+      ],
       "riskLevel": "major",
       "vulnerabilityScore": 72,
-      "primaryThreat": "Rising temperatures",
-      "cost": { "currentAvg": 4.50, "predictedAvg": 9.00, "currency": "USD", "unit": "lb" },
-      "monthlyImpacts": { "jan": { "production_impact": 40, "transport_impact": 20, "processing_impact": 15, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "feb": { "production_impact": 42, "transport_impact": 18, "processing_impact": 15, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "mar": { "production_impact": 45, "transport_impact": 17, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "apr": { "production_impact": 48, "transport_impact": 15, "processing_impact": 12, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "may": { "production_impact": 50, "transport_impact": 15, "processing_impact": 10, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "jun": { "production_impact": 52, "transport_impact": 14, "processing_impact": 9, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "jul": { "production_impact": 55, "transport_impact": 13, "processing_impact": 7, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "aug": { "production_impact": 53, "transport_impact": 14, "processing_impact": 8, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "sep": { "production_impact": 50, "transport_impact": 15, "processing_impact": 10, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "oct": { "production_impact": 47, "transport_impact": 16, "processing_impact": 12, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "nov": { "production_impact": 44, "transport_impact": 18, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "dec": { "production_impact": 42, "transport_impact": 20, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 } }
+      "primaryThreat": "Temp variability",
+      "cost": {
+        "currentAvg": 3.0,
+        "predictedAvg": 6.5,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 36,
+          "transport_impact": 31,
+          "processing_impact": 20,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "feb": {
+          "production_impact": 37,
+          "transport_impact": 30,
+          "processing_impact": 20,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "mar": {
+          "production_impact": 40,
+          "transport_impact": 28,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "apr": {
+          "production_impact": 45,
+          "transport_impact": 25,
+          "processing_impact": 17,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "may": {
+          "production_impact": 48,
+          "transport_impact": 22,
+          "processing_impact": 16,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "jun": {
+          "production_impact": 53,
+          "transport_impact": 18,
+          "processing_impact": 15,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "jul": {
+          "production_impact": 55,
+          "transport_impact": 17,
+          "processing_impact": 14,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "aug": {
+          "production_impact": 53,
+          "transport_impact": 18,
+          "processing_impact": 15,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "sep": {
+          "production_impact": 48,
+          "transport_impact": 22,
+          "processing_impact": 16,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "oct": {
+          "production_impact": 44,
+          "transport_impact": 25,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "nov": {
+          "production_impact": 37,
+          "transport_impact": 30,
+          "processing_impact": 20,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "dec": {
+          "production_impact": 36,
+          "transport_impact": 31,
+          "processing_impact": 20,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        }
+      }
     },
     {
-      "id": "chocolate",
-      "name": "Chocolate",
-      "categories": ["fruit"],
+      "id": "tofu",
+      "name": "Tofu",
+      "categories": [
+        "legumes"
+      ],
+      "riskLevel": "medium",
+      "vulnerabilityScore": 55,
+      "primaryThreat": "Soy supply",
+      "cost": {
+        "currentAvg": 2.0,
+        "predictedAvg": 4.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 38,
+          "transport_impact": 28,
+          "processing_impact": 19,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "feb": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 18,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "mar": {
+          "production_impact": 43,
+          "transport_impact": 24,
+          "processing_impact": 18,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "apr": {
+          "production_impact": 48,
+          "transport_impact": 21,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "may": {
+          "production_impact": 44,
+          "transport_impact": 24,
+          "processing_impact": 17,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jun": {
+          "production_impact": 49,
+          "transport_impact": 20,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jul": {
+          "production_impact": 51,
+          "transport_impact": 18,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 9
+        },
+        "aug": {
+          "production_impact": 49,
+          "transport_impact": 20,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "sep": {
+          "production_impact": 44,
+          "transport_impact": 24,
+          "processing_impact": 17,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "oct": {
+          "production_impact": 39,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "nov": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 18,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "dec": {
+          "production_impact": 38,
+          "transport_impact": 28,
+          "processing_impact": 19,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        }
+      }
+    },
+    {
+      "id": "skim_milk",
+      "name": "Skim Milk",
+      "categories": [
+        "dairy"
+      ],
+      "riskLevel": "medium",
+      "vulnerabilityScore": 57,
+      "primaryThreat": "Water/feed",
+      "cost": {
+        "currentAvg": 1.2,
+        "predictedAvg": 2.5,
+        "currency": "USD",
+        "unit": "quart"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "feb": {
+          "production_impact": 42,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "mar": {
+          "production_impact": 45,
+          "transport_impact": 24,
+          "processing_impact": 17,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "apr": {
+          "production_impact": 50,
+          "transport_impact": 20,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "may": {
+          "production_impact": 46,
+          "transport_impact": 23,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jun": {
+          "production_impact": 51,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jul": {
+          "production_impact": 53,
+          "transport_impact": 18,
+          "processing_impact": 14,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "aug": {
+          "production_impact": 51,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "sep": {
+          "production_impact": 46,
+          "transport_impact": 23,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "oct": {
+          "production_impact": 41,
+          "transport_impact": 26,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "nov": {
+          "production_impact": 42,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "dec": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        }
+      }
+    },
+    {
+      "id": "greek_yogurt",
+      "name": "Greek Yogurt",
+      "categories": [
+        "dairy"
+      ],
+      "riskLevel": "medium",
+      "vulnerabilityScore": 59,
+      "primaryThreat": "Milk volatility",
+      "cost": {
+        "currentAvg": 4.0,
+        "predictedAvg": 7.5,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "feb": {
+          "production_impact": 42,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "mar": {
+          "production_impact": 45,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "apr": {
+          "production_impact": 50,
+          "transport_impact": 20,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "may": {
+          "production_impact": 46,
+          "transport_impact": 23,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jun": {
+          "production_impact": 51,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "jul": {
+          "production_impact": 53,
+          "transport_impact": 18,
+          "processing_impact": 14,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "aug": {
+          "production_impact": 51,
+          "transport_impact": 19,
+          "processing_impact": 15,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "sep": {
+          "production_impact": 46,
+          "transport_impact": 23,
+          "processing_impact": 16,
+          "home_cooking_impacts": 7,
+          "refridgeration_impact": 8
+        },
+        "oct": {
+          "production_impact": 41,
+          "transport_impact": 26,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "nov": {
+          "production_impact": 42,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "dec": {
+          "production_impact": 40,
+          "transport_impact": 27,
+          "processing_impact": 19,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        }
+      }
+    },
+    {
+      "id": "ham",
+      "name": "Ham",
+      "categories": [
+        "protein"
+      ],
+      "riskLevel": "major",
+      "vulnerabilityScore": 74,
+      "primaryThreat": "Livestock disease",
+      "cost": {
+        "currentAvg": 4.5,
+        "predictedAvg": 9.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 42,
+          "transport_impact": 27,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "feb": {
+          "production_impact": 43,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "mar": {
+          "production_impact": 46,
+          "transport_impact": 24,
+          "processing_impact": 17,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "apr": {
+          "production_impact": 51,
+          "transport_impact": 21,
+          "processing_impact": 15,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "may": {
+          "production_impact": 51,
+          "transport_impact": 21,
+          "processing_impact": 15,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "jun": {
+          "production_impact": 55,
+          "transport_impact": 17,
+          "processing_impact": 14,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "jul": {
+          "production_impact": 57,
+          "transport_impact": 16,
+          "processing_impact": 13,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "aug": {
+          "production_impact": 55,
+          "transport_impact": 17,
+          "processing_impact": 14,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 8
+        },
+        "sep": {
+          "production_impact": 51,
+          "transport_impact": 21,
+          "processing_impact": 15,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "oct": {
+          "production_impact": 46,
+          "transport_impact": 24,
+          "processing_impact": 17,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "nov": {
+          "production_impact": 43,
+          "transport_impact": 26,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        },
+        "dec": {
+          "production_impact": 42,
+          "transport_impact": 27,
+          "processing_impact": 18,
+          "home_cooking_impacts": 6,
+          "refridgeration_impact": 7
+        }
+      }
+    },
+    {
+      "id": "bacon",
+      "name": "Bacon",
+      "categories": [
+        "protein"
+      ],
+      "riskLevel": "major",
+      "vulnerabilityScore": 78,
+      "primaryThreat": "Feed costs",
+      "cost": {
+        "currentAvg": 5.5,
+        "predictedAvg": 11.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 60,
+          "transport_impact": 38,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "feb": {
+          "production_impact": 62,
+          "transport_impact": 36,
+          "processing_impact": 24,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "mar": {
+          "production_impact": 65,
+          "transport_impact": 33,
+          "processing_impact": 23,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "apr": {
+          "production_impact": 70,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "may": {
+          "production_impact": 70,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jun": {
+          "production_impact": 75,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jul": {
+          "production_impact": 77,
+          "transport_impact": 21,
+          "processing_impact": 17,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "aug": {
+          "production_impact": 75,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "sep": {
+          "production_impact": 70,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "oct": {
+          "production_impact": 65,
+          "transport_impact": 33,
+          "processing_impact": 23,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "nov": {
+          "production_impact": 62,
+          "transport_impact": 36,
+          "processing_impact": 24,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "dec": {
+          "production_impact": 60,
+          "transport_impact": 38,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        }
+      }
+    },
+    {
+      "id": "beef",
+      "name": "Beef",
+      "categories": [
+        "protein"
+      ],
       "riskLevel": "critical",
       "vulnerabilityScore": 85,
-      "primaryThreat": "Habitat loss",
-      "cost": { "currentAvg": 8.99, "predictedAvg": 18.50, "currency": "USD", "unit": "lb" },
-      "monthlyImpacts": { "jan": { "production_impact": 40, "transport_impact": 20, "processing_impact": 15, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "feb": { "production_impact": 42, "transport_impact": 18, "processing_impact": 15, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "mar": { "production_impact": 45, "transport_impact": 17, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "apr": { "production_impact": 48, "transport_impact": 15, "processing_impact": 12, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "may": { "production_impact": 50, "transport_impact": 15, "processing_impact": 10, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "jun": { "production_impact": 52, "transport_impact": 14, "processing_impact": 9, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "jul": { "production_impact": 55, "transport_impact": 13, "processing_impact": 7, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "aug": { "production_impact": 53, "transport_impact": 14, "processing_impact": 8, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "sep": { "production_impact": 50, "transport_impact": 15, "processing_impact": 10, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "oct": { "production_impact": 47, "transport_impact": 16, "processing_impact": 12, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "nov": { "production_impact": 44, "transport_impact": 18, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "dec": { "production_impact": 42, "transport_impact": 20, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 } }
+      "primaryThreat": "Water scarcity",
+      "cost": {
+        "currentAvg": 6.0,
+        "predictedAvg": 14.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 63,
+          "transport_impact": 40,
+          "processing_impact": 26,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "feb": {
+          "production_impact": 65,
+          "transport_impact": 38,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "mar": {
+          "production_impact": 68,
+          "transport_impact": 35,
+          "processing_impact": 24,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "apr": {
+          "production_impact": 73,
+          "transport_impact": 30,
+          "processing_impact": 21,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "may": {
+          "production_impact": 75,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jun": {
+          "production_impact": 80,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jul": {
+          "production_impact": 82,
+          "transport_impact": 21,
+          "processing_impact": 17,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "aug": {
+          "production_impact": 80,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "sep": {
+          "production_impact": 75,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "oct": {
+          "production_impact": 70,
+          "transport_impact": 33,
+          "processing_impact": 23,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "nov": {
+          "production_impact": 65,
+          "transport_impact": 38,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "dec": {
+          "production_impact": 63,
+          "transport_impact": 40,
+          "processing_impact": 26,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        }
+      }
     },
-
     {
-      "id": "bananas",
-      "name": "Bananas",
-      "categories": ["fruit"],
+      "id": "chicken",
+      "name": "Chicken",
+      "categories": [
+        "protein"
+      ],
       "riskLevel": "major",
-      "vulnerabilityScore": 68,
-      "primaryThreat": "Panama disease",
-      "cost": { "currentAvg": 0.59, "predictedAvg": 1.25, "currency": "USD", "unit": "lb" },
-      "monthlyImpacts": { "jan": { "production_impact": 40, "transport_impact": 20, "processing_impact": 15, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "feb": { "production_impact": 42, "transport_impact": 18, "processing_impact": 15, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "mar": { "production_impact": 45, "transport_impact": 17, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "apr": { "production_impact": 48, "transport_impact": 15, "processing_impact": 12, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "may": { "production_impact": 50, "transport_impact": 15, "processing_impact": 10, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "jun": { "production_impact": 52, "transport_impact": 14, "processing_impact": 9, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "jul": { "production_impact": 55, "transport_impact": 13, "processing_impact": 7, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "aug": { "production_impact": 53, "transport_impact": 14, "processing_impact": 8, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "sep": { "production_impact": 50, "transport_impact": 15, "processing_impact": 10, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "oct": { "production_impact": 47, "transport_impact": 16, "processing_impact": 12, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "nov": { "production_impact": 44, "transport_impact": 18, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 }, "dec": { "production_impact": 42, "transport_impact": 20, "processing_impact": 13, "home_cooking_impacts": 10, "refridgeration_impact": 15 } }
+      "vulnerabilityScore": 70,
+      "primaryThreat": "Feed shortages",
+      "cost": {
+        "currentAvg": 3.0,
+        "predictedAvg": 7.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 57,
+          "transport_impact": 37,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "feb": {
+          "production_impact": 59,
+          "transport_impact": 35,
+          "processing_impact": 24,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "mar": {
+          "production_impact": 62,
+          "transport_impact": 32,
+          "processing_impact": 22,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "apr": {
+          "production_impact": 67,
+          "transport_impact": 27,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "may": {
+          "production_impact": 66,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jun": {
+          "production_impact": 71,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jul": {
+          "production_impact": 73,
+          "transport_impact": 21,
+          "processing_impact": 17,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "aug": {
+          "production_impact": 71,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "sep": {
+          "production_impact": 66,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "oct": {
+          "production_impact": 61,
+          "transport_impact": 33,
+          "processing_impact": 23,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "nov": {
+          "production_impact": 59,
+          "transport_impact": 35,
+          "processing_impact": 24,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "dec": {
+          "production_impact": 57,
+          "transport_impact": 37,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        }
+      }
+    },
+    {
+      "id": "bass",
+      "name": "Bass",
+      "categories": [
+        "seafood"
+      ],
+      "riskLevel": "major",
+      "vulnerabilityScore": 73,
+      "primaryThreat": "Ocean warming",
+      "cost": {
+        "currentAvg": 7.0,
+        "predictedAvg": 13.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 56,
+          "transport_impact": 39,
+          "processing_impact": 26,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "feb": {
+          "production_impact": 58,
+          "transport_impact": 37,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "mar": {
+          "production_impact": 61,
+          "transport_impact": 34,
+          "processing_impact": 23,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "apr": {
+          "production_impact": 66,
+          "transport_impact": 29,
+          "processing_impact": 21,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "may": {
+          "production_impact": 67,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jun": {
+          "production_impact": 72,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jul": {
+          "production_impact": 74,
+          "transport_impact": 21,
+          "processing_impact": 17,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "aug": {
+          "production_impact": 72,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "sep": {
+          "production_impact": 67,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "oct": {
+          "production_impact": 62,
+          "transport_impact": 33,
+          "processing_impact": 23,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "nov": {
+          "production_impact": 58,
+          "transport_impact": 37,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "dec": {
+          "production_impact": 56,
+          "transport_impact": 39,
+          "processing_impact": 26,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        }
+      }
+    },
+    {
+      "id": "salmon",
+      "name": "Salmon",
+      "categories": [
+        "seafood"
+      ],
+      "riskLevel": "critical",
+      "vulnerabilityScore": 88,
+      "primaryThreat": "Ocean acidification",
+      "cost": {
+        "currentAvg": 9.0,
+        "predictedAvg": 18.0,
+        "currency": "USD",
+        "unit": "lb"
+      },
+      "monthlyImpacts": {
+        "jan": {
+          "production_impact": 60,
+          "transport_impact": 40,
+          "processing_impact": 26,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "feb": {
+          "production_impact": 62,
+          "transport_impact": 38,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "mar": {
+          "production_impact": 65,
+          "transport_impact": 35,
+          "processing_impact": 24,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "apr": {
+          "production_impact": 70,
+          "transport_impact": 30,
+          "processing_impact": 21,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "may": {
+          "production_impact": 72,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jun": {
+          "production_impact": 77,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "jul": {
+          "production_impact": 79,
+          "transport_impact": 21,
+          "processing_impact": 17,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "aug": {
+          "production_impact": 77,
+          "transport_impact": 23,
+          "processing_impact": 18,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "sep": {
+          "production_impact": 72,
+          "transport_impact": 28,
+          "processing_impact": 20,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "oct": {
+          "production_impact": 67,
+          "transport_impact": 33,
+          "processing_impact": 23,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "nov": {
+          "production_impact": 62,
+          "transport_impact": 38,
+          "processing_impact": 25,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        },
+        "dec": {
+          "production_impact": 60,
+          "transport_impact": 40,
+          "processing_impact": 26,
+          "home_cooking_impacts": 8,
+          "refridgeration_impact": 10
+        }
+      }
     }
   ]
 }

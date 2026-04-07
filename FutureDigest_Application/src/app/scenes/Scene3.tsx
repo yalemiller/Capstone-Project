@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
+import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
 import { Sun, Ground, GradientBackground } from '../components/scene-elements';
-import { validateFoodName } from '../utils/foodValidation';
+import { validateFoodName, getAllFoodNames } from '../utils/foodValidation';
 import { errorFlashAnimation } from '../animations/variants';
 import { SCENE_3_STEPS, SCENE_3_CONFIG, VALIDATION, TOTAL_SCENES } from '../constants';
 
@@ -17,27 +17,37 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
   const currentStepData = SCENE_3_STEPS[currentStep];
   const finalStepData = SCENE_3_STEPS[SCENE_3_STEPS.length - 1];
 
+  // Get all food names for examples (memoized to prevent re-creation on every render)
+  const allFoods = useMemo(() => getAllFoodNames(), []);
+
+  // Generate dynamic helper text with randomized food examples that update per step
+  const helperText = useMemo(() => {
+    const shuffled = [...allFoods].sort(() => Math.random() - 0.5);
+    const examples = shuffled.slice(0, 3).join(', ');
+    return `Try entering foods like ${examples}`;
+  }, [currentStep, allFoods]);
+
+  // ✅ NEW: color logic
+  const isDarkBlueStep = currentStep === 1 || currentStep === 2;
+
   // Keep shared sky background in sync with feeding progression.
   useEffect(() => {
     if (!onSkyGradientChange) return;
     onSkyGradientChange(isComplete ? finalStepData.gradient : currentStepData.gradient);
   }, [currentStepData.gradient, finalStepData.gradient, isComplete, onSkyGradientChange]);
 
-  // Auto focus input when step changes
   useEffect(() => {
     if (inputRef.current && !isComplete) {
       inputRef.current.focus();
     }
   }, [currentStep, isComplete]);
 
-  // Notify parent when complete to re-enable scrolling
   useEffect(() => {
     if (isComplete && onComplete) {
       onComplete();
     }
   }, [isComplete, onComplete]);
 
-  // Send foods to parent when foods change
   useEffect(() => {
     if (onFoodsEntered && enteredFoods.length > 0) {
       onFoodsEntered(enteredFoods);
@@ -49,21 +59,19 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
     
     if (!inputValue.trim()) return;
 
-    const isValid = validateFoodName(inputValue);
+    const trimmedInput = inputValue.trim();
+    const isDuplicate = enteredFoods.some(food => food.toLowerCase() === trimmedInput.toLowerCase());
+    const isValid = validateFoodName(trimmedInput);
 
-    if (isValid) {
-      const newFoods = [...enteredFoods, inputValue.trim()];
+    if (isValid && !isDuplicate) {
+      const newFoods = [...enteredFoods, trimmedInput];
       setEnteredFoods(newFoods);
       setInputValue('');
       
       if (currentStep === SCENE_3_STEPS.length - 1) {
-        setTimeout(() => {
-          setIsComplete(true);
-        }, 500);
+        setTimeout(() => setIsComplete(true), 500);
       } else {
-        setTimeout(() => {
-          setCurrentStep(currentStep + 1);
-        }, 500);
+        setTimeout(() => setCurrentStep(currentStep + 1), 500);
       }
     } else {
       setShowError(true);
@@ -73,7 +81,7 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
 
   return (
     <div className="bg-white relative size-full overflow-hidden" data-name="Scene 3">
-      {/* Animated Background Gradient */}
+
       <GradientBackground 
         gradient={isComplete ? finalStepData.gradient : currentStepData.gradient}
         animate
@@ -81,7 +89,6 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
         backgroundPosition="50% 100%"
       />
 
-      {/* Scene 3 step 0 only: blend Scene 2 turquoise into the top of this gradient */}
       {!isComplete && currentStep === 0 && (
         <div
           className="absolute left-0 top-0 w-full pointer-events-none"
@@ -92,7 +99,6 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
         />
       )}
 
-      {/* Error Flash Overlay */}
       <AnimatePresence>
         {showError && (
           <motion.div
@@ -102,39 +108,25 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
         )}
       </AnimatePresence>
 
-      {/* Animated Sun */}
-      <Sun
-        left={isComplete ? finalStepData.sunPosition.left : currentStepData.sunPosition.left}
-        top={isComplete ? finalStepData.sunPosition.top : currentStepData.sunPosition.top}
-        animate
-        transition={{ 
-          duration: 1.8,
-          ease: [0.43, 0.13, 0.23, 0.96]
-        }}
-      />
+      {/* <Sun ... /> */}
 
-      {/* Green Ground */}
       <Ground />
 
-      {/* Person image and food blocks are now rendered by ParallaxPerson overlay */}
-
-      {/* Input Screen - Show when not complete */}
       <AnimatePresence>
         {!isComplete && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Prompt Text */}
+          <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+
+            {/* Prompt */}
             <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={`prompt-${currentStep}`}
                 initial={{ opacity: 0, x: -24 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 24 }}
-                transition={{ duration: 0.45, ease: 'easeInOut' }}
-                className="absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#fae850]"
+                transition={{ duration: 0.45 }}
+                className={`absolute font-bold ${
+                  isDarkBlueStep ? 'text-[#1e3a8a]' : 'text-[#fae850]'
+                }`}
                 style={{
                   left: '10vw',
                   top: '24vh',
@@ -146,9 +138,9 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
               </motion.p>
             </AnimatePresence>
 
-            {/* Input Form */}
-            <form 
-              onSubmit={handleSubmit} 
+            {/* Input */}
+            <form
+              onSubmit={handleSubmit}
               className="absolute"
               style={{
                 left: '10vw',
@@ -161,46 +153,48 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="w-full bg-transparent border-none outline-none font-['Inter:Bold',sans-serif] font-bold text-[#fae850] pb-[10px]"
+                className={`w-full bg-transparent border-none outline-none font-bold pb-[10px] ${
+                  isDarkBlueStep ? 'text-[#1e3a8a]' : 'text-[#fae850]'
+                }`}
                 style={{ fontSize: 'clamp(18px, 2.1vw, 40px)' }}
-                placeholder=""
-                autoComplete="off"
-                autoFocus
               />
               <div className="bg-[#d9d9d9] h-[8px] w-full" />
             </form>
 
-            {/* Helper Text */}
+            {/* Helper */}
             <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={`helper-${currentStep}`}
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#fae850]"
+                transition={{ duration: 0.4 }}
+                className={`absolute font-bold ${
+                  isDarkBlueStep ? 'text-[#1e3a8a]' : 'text-[#fae850]'
+                }`}
                 style={{
                   left: '10vw',
-                  top: '47vh',
+                  top: '53vh',
                   width: '44vw',
                   fontSize: 'clamp(10px, 1vw, 20px)',
                 }}
               >
-                {SCENE_3_CONFIG.helperText}
+                {helperText}
               </motion.p>
             </AnimatePresence>
+
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Completion Screen */}
+      {/* Completion */}
       <AnimatePresence>
         {isComplete && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute font-['Inter:Bold',sans-serif] font-bold leading-[0] not-italic text-[#fae850]"
+            transition={{ duration: 0.8 }}
+            className="absolute font-bold text-[#fae850]"
             style={{
               left: '10vw',
               top: '36vh',
@@ -208,17 +202,14 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
               fontSize: 'clamp(22px, 2.9vw, 55px)',
             }}
           >
-            <p className="leading-[normal] mb-0">{SCENE_3_CONFIG.completionText.line1}</p>
-            <p className="leading-[normal]">{SCENE_3_CONFIG.completionText.line2}</p>
+            <p>{SCENE_3_CONFIG.completionText.line1}</p>
+            <p>{SCENE_3_CONFIG.completionText.line2}</p>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <SceneProgressIndicator
-  currentScene={currentScene}
-  totalScenes={TOTAL_SCENES}
+      <SceneProgressIndicator currentScene={currentScene} totalScenes={TOTAL_SCENES} />
 
-/>
     </div>
   );
 }
