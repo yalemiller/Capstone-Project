@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
-import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
+import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
 import { headlineAnimation } from '../animations/variants';
 import { GradientBackground } from '../components/scene-elements';
-import { COLORS } from '../constants';
+import { COLORS, TOTAL_SCENES } from '../constants';
 import { appContent } from '../data/appContent';
 
 export function Scene2({ currentScene = 1, totalScenes = 8, skyGradient, enableGlobalGradient = false }) {
@@ -56,10 +56,10 @@ export function Scene2({ currentScene = 1, totalScenes = 8, skyGradient, enableG
       </motion.p>
       
       {/* Scene progress indicator */}
-      <SceneProgressIndicator 
-        totalScenes={totalScenes} 
-        currentScene={currentScene} 
-      />
+      <SceneProgressIndicator
+  currentScene={currentScene}
+  totalScenes={TOTAL_SCENES}
+/>
     </div>
   );
 }

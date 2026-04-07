@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
+import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
 import { Sun, Ground, GradientBackground } from '../components/scene-elements';
 import { validateFoodName } from '../utils/foodValidation';
 import { errorFlashAnimation } from '../animations/variants';
-import { SCENE_3_STEPS, SCENE_3_CONFIG, VALIDATION } from '../constants';
+import { SCENE_3_STEPS, SCENE_3_CONFIG, VALIDATION, TOTAL_SCENES } from '../constants';
 
 export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsEntered, onSkyGradientChange }) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -214,11 +214,11 @@ export function Scene3({ currentScene = 2, totalScenes = 8, onComplete, onFoodsE
         )}
       </AnimatePresence>
 
-      {/* Scene progress indicator */}
-      <SceneProgressIndicator 
-        totalScenes={totalScenes} 
-        currentScene={1}
-      />
+      <SceneProgressIndicator
+  currentScene={currentScene}
+  totalScenes={TOTAL_SCENES}
+
+/>
     </div>
   );
 }

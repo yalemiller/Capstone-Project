@@ -55,6 +55,9 @@ export function Scene1({ skyGradient, enableGlobalGradient = false }) {
           </div>
         </div>
       </motion.div>
+      
     </div>
+
+    
   );
 }

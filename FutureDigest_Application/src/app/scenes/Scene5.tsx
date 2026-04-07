@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import imgReceipt1 from "../../assets/9c3dc63f059e5edf6e5cd9ea26c689682b0147c6.png";
-import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
+import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
 import { appContent } from '../data/appContent';
 import { formatCurrency, getSelectedFoodsCostTotals } from '../utils/dataHelpers';
+import { TOTAL_SCENES } from '../constants';
 
 const OVERLAP_COMPLETE_PROGRESS = 5.02;
 const RECEIPT_ENTRY_START = 3.55;
@@ -112,7 +113,7 @@ export function Scene5({
         className="fixed font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0f707f]"
         style={{
           left: '9.4vw',
-          top: '35.7vh',
+          top: '40.7vh',
           width: '47.2vw',
           fontSize: 'clamp(60px, 10.4vw, 200px)',
           opacity: textOpacity,
@@ -125,9 +126,10 @@ export function Scene5({
       </p>
 
       <SceneProgressIndicator
-        totalScenes={totalScenes}
-        currentScene={currentScene}
-      />
+  currentScene={currentScene}
+  totalScenes={TOTAL_SCENES}
+
+/>
     </div>
   );
 }

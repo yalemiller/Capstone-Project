@@ -15,6 +15,8 @@ export const SceneProgressIndicator = memo(function SceneProgressIndicator({
       style={{
         height: `${totalScenes * 40 + 31}px`,
         width: '74px',
+        opacity: currentScene === 3 ? 0 : 1,
+        transition: 'opacity 0.2s ease',
       }}
     >
       {Array.from({ length: totalScenes }, (_, i) => (

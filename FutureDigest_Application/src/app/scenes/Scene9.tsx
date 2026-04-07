@@ -1,4 +1,4 @@
-import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
+import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
 import { PersonSlice79 } from '../components/PersonSlice79';
 
 interface Scene9Props {

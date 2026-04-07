@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
+import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
 import { PersonSlice79 } from '../components/PersonSlice79';
 import { getFoodByName } from '../utils/foodValidation';
 
@@ -268,16 +268,16 @@ function Scene8Panel({ food }: Scene8PanelProps) {
           </>
         ) : (
           <>
-            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[30px] top-[246px] w-[700px]">
+            <p className="absolute font-['Inter:Extra_Bold',sans-serif] font-extrabold h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[30px] top-[256px] w-[700px]">
               {activeMonthTotal.toFixed(0)}% total impact
             </p>
 
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[50px] top-[655px] w-[616px]">
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[60px] leading-[normal] left-[34px] not-italic text-[#f5f5f5] text-[50px] top-[625px] w-[616px]">
               {MONTHS[currentMonth]}
             </p>
 
             <div
-              className="absolute top-[320px] h-[327px] flex overflow-visible"
+              className="absolute top-[370px] h-[227px] flex overflow-visible"
               style={{ left: `${YEAR_BAR_LEFT}px`, right: `${YEAR_BAR_RIGHT}px` }}
             >
               {activeSegments.map((segment) => {
@@ -311,23 +311,22 @@ function Scene8Panel({ food }: Scene8PanelProps) {
               })}
             </div>
 
-            <div className="absolute bg-[#d9d9d9] h-[17px] left-[37px] rounded-[2px] top-[751px]" style={{ width: 'calc(100% - 74px)' }} />
+            <div className="absolute bg-[#d9d9d9] h-[17px] left-[37px] rounded-[2px] top-[734px]" style={{ width: 'calc(100% - 74px)' }} />
             {Array.from({ length: 12 }).map((_, idx) => (
-              <div key={idx} className="absolute bg-[#898989] h-[17px] w-[5px] top-[834px]" style={{ left: `${101 + idx * 67}px` }} />
+              <div key={idx} className="absolute bg-[#898989] h-[17px] w-[5px] top-[734px]" style={{ left: `${101 + idx * 67}px` }} />
             ))}
 
             <input
               type="range"
               min="0"
-              max="11"
-              value={currentMonth}
+              max="11"              step="1"              value={currentMonth}
               onChange={(e) => setCurrentMonth(parseInt(e.target.value, 10))}
               className="absolute left-[37px] top-[707px] h-[68px] opacity-0 cursor-pointer z-10"
               style={{ width: 'calc(100% - 74px)' }}
             />
 
             <div
-              className="absolute bg-[#97a6f8] h-[68px] rounded-[8px] top-[725px] w-[67px] pointer-events-none"
+              className="absolute bg-[#97a6f8] h-[68px] rounded-[8px] top-[707px] w-[67px] pointer-events-none"
               style={{ left: `${37 + currentMonth * 67}px` }}
             />
           </>
@@ -472,11 +471,10 @@ export function Scene8({ currentScene = 7, totalScenes = 9, enteredFoods = [] }:
   return (
     <div className="w-full h-full relative overflow-visible bg-[#2ea3bd]" data-name="Scene 8">
       <PersonSlice79
-  slice="middle"
-  foods={foods.map((food) => food.name)}
-  currentFoodIndex={activeIndex}
-  zIndex={8}
-/>
+        slice="middle"
+        foods={foods.map((food) => food.name)}
+        zIndex={8}
+      />
 
       <div
         ref={scrollContainerRef}

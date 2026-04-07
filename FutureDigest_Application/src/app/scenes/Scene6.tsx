@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import imgBag1 from "../../assets/161e525cc32e6c36fdb23b7da795dc9faee62f01.png";
-import { SceneProgressIndicator } from '../components/SceneProgressIndicator';
+import  { SceneProgressIndicator }  from '../components/SceneProgressIndicator';
 import { appContent } from '../data/appContent';
 import { formatCurrency, getSelectedFoodsCostTotals } from '../utils/dataHelpers';
 

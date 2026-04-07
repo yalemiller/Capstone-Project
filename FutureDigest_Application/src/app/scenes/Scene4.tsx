@@ -10,6 +10,8 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+
+
 function mean(values: number[]) {
   if (values.length === 0) return 0;
   return values.reduce((sum, value) => sum + value, 0) / values.length;
@@ -356,7 +358,7 @@ export function Scene4({ currentScene = 3, totalScenes = 8, enteredFoods = [], o
 
                 <p
                   className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-[#f5f5f5]"
-                  style={{ fontSize: 'clamp(80px, 2.5vw, 48px)', lineHeight: 1.1 }}
+                  style={{ fontSize: 'clamp(50px, 1.5vw, 28px)', lineHeight: 1.1 }}
                 >
                   Vulnerability:
                 </p>
@@ -377,14 +379,14 @@ export function Scene4({ currentScene = 3, totalScenes = 8, enteredFoods = [], o
 
                 <p
                   className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-[#f5f5f5]"
-                  style={{ fontSize: 'clamp(80px, 2.5vw, 48px)', marginTop: '7vh', lineHeight: 1.1 }}
+                  style={{ fontSize: 'clamp(50px, 1.5vw, 28px)', marginTop: '7vh', lineHeight: 1.1 }}
                 >
                   Primary Threat
                 </p>
 
                 <ul
                   className="font-['Inter:Regular',sans-serif] text-[#f5f5f5]"
-                  style={{ fontSize: 'clamp(70px, 2.2vw, 40px)', marginLeft: '2vw', marginTop: '1.1vh' }}
+                  style={{ fontSize: 'clamp(50px, 1.5vw, 28px)', marginLeft: '2vw', marginTop: '1.1vh' }}
                 >
                   <li className="list-disc">
                     <span>{food.primaryThreat}</span>
