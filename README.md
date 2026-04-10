@@ -5,7 +5,7 @@
 1. [Project Abstract](abstract/abstract.md)
 2. [Project Description](project-description/project-description.md)
 3. [User Stories and Design Diagrams](user-stories-and-design-diagrams/user-stories-and-design-diagrams.md)
-4. Test Plan and Results
+4. [Test Plan](test-plan/YaleMiller_TestPlan.pdf)
 5. [User Manual](https://yalemiller.github.io/Capstone-Project/)
 6. [Fall Initial PPT Presentation](slideshow/slideshow.pdf)
 7. [Spring Final PPT Presentation](slideshow/YaleMiller_Presentation.pdf)
