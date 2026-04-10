@@ -10,7 +10,10 @@
 6. [Fall Initial PPT Presentation](slideshow/slideshow.pdf)
 7. [Spring Final PPT Presentation](slideshow/YaleMiller_Presentation.pdf)
 8. [Final Expo Poster](poster/YaleMiller_CapstonePoster.pdf)
-9. Assessments
+9. [Assessment Essays](assessment-essays)
+    - [Fall Self Assessment](assessment-essays/capstone-assessment.md)
+    - [Team Contract](assessment-essays/team-contract.md)
+    - [Spring Final Self Assessment](assessment-essays/final-assessment.md)
 10. [Project Tasks and Timeline](project-tasks-and-timeline/)
     - [Effort Matrix](project-tasks-and-timeline/effort-matrix.md)
     - [Task List](project-tasks-and-timeline/task-list.md)
@@ -18,10 +21,3 @@
 11. [ABET Concerns Essay](abet-concerns-essay/abet-concerns-essay.md)
 12. [Budget](budget/budget.md)
 13. [Appendix](appendix/appendix.md)
-
-
-
-
-15. [Assessment Essays](assessment-essays)
-    - [Capstone Assessment](assessment-essays/capstone-assessment.md)
-    - [Team Contract](assessment-essays/team-contract.md)
