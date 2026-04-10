@@ -8,8 +8,8 @@
 4. Test Plan and Results
 5. User Manual
 6. [Fall Initial PPT Presentation](slideshow/slideshow.pdf)
-7. Spring Final PPT Presentation
-8. [Final Expo Poster](FinalPoster/YaleMiller_CapstonePoster.pdf)
+7. [Spring Final PPT Presentation](slideshow/YaleMiller_Presentation.pdf)
+8. [Final Expo Poster](poster/YaleMiller_CapstonePoster.pdf)
 9. Assessments
 10. [Project Tasks and Timeline](project-tasks-and-timeline/)
     - [Effort Matrix](project-tasks-and-timeline/effort-matrix.md)
